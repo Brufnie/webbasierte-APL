@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Kontakt - Buchgeschäft</title>
+  <link rel="stylesheet" href="style.css"> 
+</head>
+<body>
+
+  <header>
+    <h1>Buchgeschäft der Gruppe xx</h1>
+  </header>
+
+  <main>
+    <nav>
+      <h2>Navigation</h2>
+      <ul>
+        <li><a href="index.html">Startseite</a></li>
+        <li><a href="gruppe.html">EwA Gruppe Gxx</a></li>
+        <li><a href="#">Buchshop</a></li>
+        <li><a href="./admin/">Verwaltung</a></li>
+        <li><a href="#">Übung 1 (Platzhalter)</a></li>
+        <li><a href="#">Übung 2 (Platzhalter)</a></li>
+      </ul>
+    </nav>
+
+    <section class="content">
+      <h2>Kontaktformular</h2>
+      
+      <form id="contactForm" action="submit-dummy.php" method="post" novalidate>
+        
+        <p>
+          <label for="nachname">Nachname:</label>
+          <span id="nachnameError" class="error-message"></span>
+          <input type="text" id="nachname" name="nachname" required minlength="2" placeholder="Mustermann">
+        </p>
+        <p>
+          <label for="vorname">Vorname:</label>
+          <span id="vornameError" class="error-message"></span>
+          <input type="text" id="vorname" name="vorname" required minlength="2" placeholder="Max">
+        </p>
+
+        <p>
+          <label for="email">E-Mail:</label>
+          <span id="emailError" class="error-message"></span>
+          <input type="email" id="email" name="email" required placeholder="max@beispiel.de">
+        </p>
+        
+        <p>
+          <label for="plz">Postleitzahl:</label>
+          <span id="plzError" class="error-message"></span>
+          <input type="text" id="plz" name="plz" pattern="[0-9]{5}" title="Bitte 5-stellige PLZ eingeben" placeholder="01067">
+        </p>
+
+        <p>
+          <label for="strasse">Straße und Hausnummer:</label>
+          <span id="strasseError" class="error-message"></span>
+          <input type="text" id="strasse" name="strasse" maxlength="50" placeholder="Musterstraße 1">
+        </p>
+        <p>
+          <label for="ort">Ort:</label>
+          <span id="ortError" class="error-message"></span>
+          <input type="text" id="ort" name="ort" maxlength="50" placeholder="Dresden">
+        </p>
+        
+        <p>
+          <label for="web">Webseite (optional):</label>
+          <input type="url" id="web" name="web" placeholder="https://www.meine-seite.de">
+        </p>
+        <p>
+          <label for="alter">Alter (optional):</label>
+          <input type="number" id="alter" name="alter" min="3" max="120" value="30">
+        </p>
+        <p>
+          <label for="interesse">Interesse an weiteren Produkten (0=keins, 10=sehr):</label>
+          <input type="range" id="interesse" name="interesse" min="0" max="10" placeholder="5">
+        </p>
+        <p>
+          <label for="anfrage">Ihre Anfrage:</label>
+          <textarea id="anfrage" name="anfrage" rows="5" spellcheck="true" 
+                    placeholder="Bitte geben Sie hier Ihre Anfrage an uns ein!">
+                  </textarea>
+        </p>
+        
+        <p>
+          <button type="submit">Anfrage absenden</button>
+        </p>
+      </form>
+      
+      <hr>
+
+      <section class="demo">
+        <h2>HTML5-Demo</h2>
+        <h3>Demo: HTML5 Video-Player</h3>
+        <video controls width="400">
+          <source src="demo.mp4" type="video/mp4">
+          Dein Browser unterstützt das Video-Tag nicht.
+        </video>
+        <p><strong>Browser-Testergebnisse:</strong> ... </p>
+      </section>
+
+    </section>
+
+    <aside>
+      <h3>News</h3>
+      <p>Hier könnten News oder Werbung stehen.</p>
+    </aside>
+  </main>
+
+  <footer>
+    <p>Mitglieder: Tim und Jonas</p>
+    <ul>
+      <li><a href="kontakt.html">Kontakt</a></li>
+      <li><a href="https://www.htw-dresden.de">Copyright HTW Dresden</a></li>
+    </ul>
+  </footer>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      
+      document.getElementById('contactForm').addEventListener('submit', function(event) {
+        const isFormValid = validateFormOnSubmit();
+        
+        if (!isFormValid) {
+          event.preventDefault(); 
+          alert('Bitte korrigieren Sie die Fehler im Formular.');
+        }
+      });
+
+      // Event Listener für alle Felder, die wir prüfen
+      document.getElementById('nachname').addEventListener('blur', validateNachname);
+      document.getElementById('vorname').addEventListener('blur', validateVorname);
+      document.getElementById('email').addEventListener('blur', validateEmail);
+      document.getElementById('plz').addEventListener('blur', validatePlz);
+      // NEU: Listener für Straße und Ort
+      document.getElementById('strasse').addEventListener('blur', validateStrasse);
+      document.getElementById('ort').addEventListener('blur', validateOrt);
+    });
+
+    // Helper-Funktionen
+    function setError(errorId, message) {
+      document.getElementById(errorId).textContent = message;
+    }
+    function clearError(errorId) {
+      document.getElementById(errorId).textContent = "";
+    }
+
+    // --- Validatoren für einzelne Felder ---
+
+    function validateNachname() {
+      let value = document.getElementById('nachname').value;
+      if (value.length < 2) {
+        setError('nachnameError', 'Nachname muss mindestens 2 Buchstaben haben.');
+        return false;
+      }
+      clearError('nachnameError');
+      return true;
+    }
+
+    function validateVorname() {
+      let value = document.getElementById('vorname').value;
+      if (value.length < 2) {
+        setError('vornameError', 'Vorname muss mindestens 2 Buchstaben haben.');
+        return false;
+      }
+      clearError('vornameError');
+      return true;
+    }
+
+    function validateEmail() {
+      let value = document.getElementById('email').value;
+      if (value === "") {
+        setError('emailError', 'E-Mail-Adresse ist ein Pflichtfeld.');
+        return false;
+      }
+      let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+           setError('emailError', 'Bitte eine gültige E-Mail-Adresse eingeben.');
+           return false;
+      }
+      clearError('emailError');
+      return true;
+    }
+
+    function validatePlz() {
+      let value = document.getElementById('plz').value;
+      let plzRegex = /^[0-9]{5}$/;
+      
+      if (value !== "" && !plzRegex.test(value)) {
+        setError('plzError', 'Bitte eine gültige 5-stellige PLZ eingeben.');
+        return false;
+      }
+      clearError('plzError');
+      return true;
+    }
+
+    // NEU: Validator für Straße
+    function validateStrasse() {
+      let value = document.getElementById('strasse').value;
+      // Kein Pflichtfeld, aber WENN ausgefüllt, min. 2 Zeichen
+      if (value !== "" && value.length < 2) {
+        setError('strasseError', 'Straße muss mindestens 2 Buchstaben haben.');
+        return false;
+      }
+      clearError('strasseError');
+      return true;
+    }
+
+    // NEU: Validator für Ort
+    function validateOrt() {
+      let value = document.getElementById('ort').value;
+      // Kein Pflichtfeld, aber WENN ausgefüllt, min. 2 Zeichen
+      if (value !== "" && value.length < 2) {
+        setError('ortError', 'Ort muss mindestens 2 Buchstaben haben.');
+        return false;
+      }
+      clearError('ortError');
+      return true;
+    }
+    
+    // --- Haupt-Validator (beim Senden) ---
+    function validateFormOnSubmit() {
+      const isNachnameValid = validateNachname();
+      const isVornameValid = validateVorname();
+      const isEmailValid = validateEmail();
+      const isPlzValid = validatePlz();
+      // NEU: Prüfungen für Straße und Ort
+      const isStrasseValid = validateStrasse();
+      const isOrtValid = validateOrt();
+
+      // Gibt 'true' zurück, WENN alle 'true' sind
+      return isNachnameValid && isVornameValid && isEmailValid && isPlzValid && isStrasseValid && isOrtValid;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+/* Grundlegendes Styling für den Body*/
+body {
+  margin: 1;
+  font-family: sans-serif;
+}
+
+/* Stil für den Kopfbereich */
+header {
+  color: white;
+  background-color: #ec660c; 
+  padding: 20px;
+  text-align: center;
+}
+
+/* Stil für den Fußbereich */
+footer {
+  background-color: #ec660c; 
+  color: white; 
+  padding: 10px;
+  text-align: center;
+}
+
+/* Stil für die Linkliste im Footer */
+footer ul {
+  list-style: none; /* Entfernt die Aufzählungszeichen */
+  padding: 0;
+  margin-top: 10px;
+}
+
+/* Links im Footer nebeneinander anzeigen */
+footer ul li {
+  display: inline-block;
+  margin: 0 10px;
+  
+}
+
+/* Stil für die Links im Footer */
+footer a {
+  color: #aef; /* Eine helle, kontrastreiche Linkfarbe */
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==================================== */
+/* 3-SPALTEN-LAYOUT (MOBILE FIRST)      */
+/* ==================================== */
+
+/* Dies ist der Flex-Container */
+main {
+  display: flex;
+  flex-direction: column; /* MOBIL: Standard "vertikal"  (untereinander) */
+}
+
+/* Alle 3 Kind-Elemente bekommen etwas Padding */
+main > * {
+  padding: 10px;
+}
+
+/* Farbabstufung ] */
+nav {
+  background-color: #f0f0f0;
+  
+}
+nav h2 {
+  padding: 0 10px; /* Nur ein kleiner horizontaler Abstand */
+}
+
+nav ul {
+  list-style: none; /* Entfernt die Aufzählungs-Punkte */
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin-bottom: 2px; /* Kleiner Abstand zwischen den Links */
+}
+
+nav a {
+  display: block; /* Lässt den Link die ganze Breite füllen */
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: #dcdcdc; /* Hintergrundfarbe beim Überfahren/Fokussieren */
+  outline: none;
+}
+
+section.content {
+  background-color: #ffffff; 
+}
+
+aside {
+  background-color: #f0f0f0;
+}
+
+
+/* ================================================== */
+/* DESKTOP-LAYOUT (per Media Query)                   */
+/* Für Fenster, die BREITER als 768px sind            */
+/* Hier schalten wir auf "horizontal"  um   */
+/* ================================================== */
+@media (min-width: 768px) {
+  
+  main {
+    flex-direction: row; /* Ändert die Richtung auf horizontal (nebeneinander) */
+    min-height: 60vh; /* Sorgt dafür, dass der Inhalt auch bei wenig Text Höhe hat */
+  }
+
+  /* 1. Navigation */
+  nav {
+    flex: 0 0 20%; /* Nicht wachsen, nicht schrumpfen, Basisbreite 20% */
+    order: 1; /* Reihenfolge: Links */
+  }
+  
+  
+  /* Styling für die Navigationsliste */
+nav h2 {
+  padding: 0 10px; /* Nur ein kleiner horizontaler Abstand */
+}
+
+nav ul {
+  list-style: none; /* Entfernt die Aufzählungs-Punkte */
+  padding: 0;
+  margin: 0;
+}
+
+nav li {
+  margin-bottom: 2px; /* Kleiner Abstand zwischen den Links */
+}
+
+nav a {
+  display: block; /* Lässt den Link die ganze Breite füllen */
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+}
+
+nav a:hover,
+nav a:focus {
+  background-color: #dcdcdc; /* Hintergrundfarbe beim Überfahren/Fokussieren */
+  outline: none;
+}
+
+
+  /* 3. Hauptinhalt (variabel)  */
+  section.content {
+    flex: 1; /* "flex-grow: 1" - Nimmt allen verfügbaren Platz ein */
+    order: 2; /* Reihenfolge: Mitte */
+  }
+
+  /* 2. Infobereich (klein) [cite: 21] */
+  aside {
+    flex: 0 0 180px; /* Feste Breite von 180px */
+    order: 3; /* Reihenfolge: Rechts */
+  }
+
+  form input[type="text"],
+form input[type="email"],
+form input[type="url"],
+form input[type="number"],
+form textarea {
+  width: 90%; /* Nimmt fast die ganze Breite des Containers ein */
+  max-width: 400px; /* Aber nicht unendlich breit werden */
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Stellt sicher, dass Labels über ihren Feldern stehen */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+/* Styling für den Submit-Button */
+form button[type="submit"] {
+  background-color: #ec660c; /* Passend zur Header-Farbe */
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+}
+
+form button[type="submit"]:hover {
+  background-color: #d35a0a; /* Etwas dunkler beim Hover */
+}
+
+/* Styling für die Demo-Sektion */
+.demo video {
+  max-width: 100%; /* Stellt sicher, dass das Video nicht überläuft */
+}
+
+/* ==================================== */
+/* STYLING FÜR VALIDIERUNGS-FEHLER      */
+/* ==================================== */
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  font-weight: bold;
+  
+  /* ---- DAS SIND DIE NEUEN ZEILEN ---- */
+  display: block;    /* Zwingt die Meldung in eine eigene Zeile */
+  min-height: 1.2em; /* Verhindert, dass das Layout "springt", 
+                         wenn die Meldung ein- oder ausgeblendet wird */
+}
+
+}
