@@ -28,30 +28,28 @@
 
     <section class="content">
       <h2>Bestellformular</h2>
-      <form method="post">
-        <label for="name">Self-PHP</label><br>
-        <input type="text" id="name" name="self-php" required><br><br>
+      <form method="post" action="./berechnung.php">
+        <label for="selfphp">Self-PHP</label><br>
+        <input type="number" id="selfphp" name="selfphp" value="0" required ><br><br>
 
-        <label for="name">PHP-Referenz</label><br>
-        <input type="text" id="name" name="php-ref" required><br><br>
+        <label for="phpref">PHP-Referenz</label><br>
+        <input type="number" id="phpref" name="phpref" value="0" required><br><br>
                 
-        <label for="name">PHP-Kochbuch</label><br>
-        <input type="text" id="name" name="PHP-Kochbuch" required><br><br>
+        <label for="phpkoch">PHP-Kochbuch</label><br>
+        <input type="number" id="phpkoch" name="phpkoch" value="0" required><br><br>
 
-        <input type="checkbox" id="address" name="address" >
-        <label for="address">Stammkunde</label><br>
+        <input type="checkbox" id="chkStamm" name="chkStamm" >
+        <label for="chkStamm">Stammkunde</label><br>
         
-        <input type="checkbox" id="address" name="address" >
-        <label for="address">TV/Werbung</label><br>
+        <input type="checkbox" id="chkWerbung" name="chkWerbung" >
+        <label for="chkWerbung">TV/Werbung</label><br>
         
-        <input type="checkbox" id="address" name="address" >
-        <label for="address">Telefonbuch</label><br>
+        <input type="checkbox" id="chkTelefon" name="chkTelefon">
+        <label for="chkTelefon">Telefonbuch</label><br>
 
-        <input type="checkbox" id="address" name="address" >
-        <label for="address">Mundprobaganda</label><br>
+        <input type="checkbox" id="chkMund" name="chkMund" >
+        <label for="chkMund">Mundprobaganda</label><br>
         <br>
-
-
 
         <input type="submit" value="Bestellen">
       </form>
